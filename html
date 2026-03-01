@@ -1,0 +1,17 @@
+<main class="container">
+  <h1>Personajes de Rick and Morty</h1>
+
+  <p *ngIf="loading" class="message">Cargando personajes...</p>
+  <p *ngIf="error" class="message error">{{ error }}</p>
+
+  <section class="cards" *ngIf="!loading && !error">
+    <article class="card" *ngFor="let character of characters">
+      <img [src]="character.image" [alt]="character.name" />
+      <div class="card-body">
+        <h2>{{ character.name }}</h2>
+        <p><strong>Estado:</strong> {{ character.status }}</p>
+        <p><strong>Especie:</strong> {{ character.species }}</p>
+      </div>
+    </article>
+  </section>
+</main>
