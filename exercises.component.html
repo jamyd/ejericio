@@ -1,0 +1,280 @@
+<section class="exercises-container">
+  <h1>Taller de Ecuaciones Diferenciales</h1>
+  <p class="subtitle">
+    Solución de ecuaciones diferenciales ordinarias de primer orden mediante
+    separación de variables y factor integrante.
+  </p>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       EJERCICIO A
+       ══════════════════════════════════════════════════════════════ -->
+  <article class="exercise">
+    <h2>Ejercicio a)</h2>
+    <p class="problem">(x + 4x) dx + x e<sup>y</sup> dy = 0</p>
+
+    <!-- Regla aplicada -->
+    <h3>Regla aplicada: Ecuación Diferencial Separable</h3>
+    <p>
+      Se utiliza la regla de separación de variables porque, tras simplificar,
+      es posible escribir la ecuación de modo que todos los términos con
+      <em>x</em> queden en un miembro y todos los términos con <em>y</em>
+      en el otro, para integrar cada lado de forma independiente.
+    </p>
+
+    <!-- Modelo matemático -->
+    <h3>Modelo matemático</h3>
+    <p>
+      Sean <em>x</em> e <em>y</em> variables reales independientes. La ecuación
+      establece una relación diferencial de la forma:
+    </p>
+    <p class="formula">M(x, y) dx + N(x, y) dy = 0</p>
+    <p>
+      donde <strong>M(x, y) = x + 4x = 5x</strong> y
+      <strong>N(x, y) = x e<sup>y</sup></strong>.
+    </p>
+
+    <!-- Procedimiento -->
+    <h3>Procedimiento paso a paso</h3>
+    <ol>
+      <li>
+        <strong>Simplificar M:</strong>
+        <p class="formula">(x + 4x) dx + x e<sup>y</sup> dy = 0</p>
+        <p class="formula">5x dx + x e<sup>y</sup> dy = 0</p>
+      </li>
+      <li>
+        <strong>Dividir ambos miembros entre x (x ≠ 0):</strong>
+        <p class="formula">5 dx + e<sup>y</sup> dy = 0</p>
+      </li>
+      <li>
+        <strong>Separar variables:</strong>
+        <p class="formula">e<sup>y</sup> dy = −5 dx</p>
+      </li>
+      <li>
+        <strong>Integrar ambos miembros:</strong>
+        <p class="formula">∫ e<sup>y</sup> dy = ∫ −5 dx</p>
+        <p class="formula">e<sup>y</sup> = −5x + C</p>
+      </li>
+    </ol>
+
+    <!-- Resultado final -->
+    <div class="result">
+      <strong>Resultado:</strong>
+      <p class="formula">e<sup>y</sup> + 5x = C</p>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       EJERCICIO B
+       ══════════════════════════════════════════════════════════════ -->
+  <article class="exercise">
+    <h2>Ejercicio b)</h2>
+    <p class="problem">(x + 8x) dx = −(x e<sup>y</sup> dy)</p>
+
+    <!-- Regla aplicada -->
+    <h3>Regla aplicada: Ecuación Diferencial Separable</h3>
+    <p>
+      Se aplica separación de variables porque, al simplificar los coeficientes
+      y dividir entre <em>x</em>, los términos con <em>x</em> y con <em>y</em>
+      pueden aislarse en lados opuestos de la ecuación para ser integrados
+      por separado.
+    </p>
+
+    <!-- Modelo matemático -->
+    <h3>Modelo matemático</h3>
+    <p>
+      Sean <em>x</em> e <em>y</em> variables reales. Reescribiendo la ecuación
+      en la forma estándar:
+    </p>
+    <p class="formula">M(x, y) dx + N(x, y) dy = 0</p>
+    <p>
+      donde <strong>M(x, y) = x + 8x = 9x</strong> y
+      <strong>N(x, y) = x e<sup>y</sup></strong>.
+    </p>
+
+    <!-- Procedimiento -->
+    <h3>Procedimiento paso a paso</h3>
+    <ol>
+      <li>
+        <strong>Reescribir en forma estándar:</strong>
+        <p class="formula">(x + 8x) dx + x e<sup>y</sup> dy = 0</p>
+        <p class="formula">9x dx + x e<sup>y</sup> dy = 0</p>
+      </li>
+      <li>
+        <strong>Dividir entre x (x ≠ 0):</strong>
+        <p class="formula">9 dx + e<sup>y</sup> dy = 0</p>
+      </li>
+      <li>
+        <strong>Separar variables:</strong>
+        <p class="formula">e<sup>y</sup> dy = −9 dx</p>
+      </li>
+      <li>
+        <strong>Integrar ambos miembros:</strong>
+        <p class="formula">∫ e<sup>y</sup> dy = ∫ −9 dx</p>
+        <p class="formula">e<sup>y</sup> = −9x + C</p>
+      </li>
+    </ol>
+
+    <!-- Resultado final -->
+    <div class="result">
+      <strong>Resultado:</strong>
+      <p class="formula">e<sup>y</sup> + 9x = C</p>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       EJERCICIO C
+       ══════════════════════════════════════════════════════════════ -->
+  <article class="exercise">
+    <h2>Ejercicio c)</h2>
+    <p class="problem">(x + 4y<sup>2</sup>) dx + yx dy = 0</p>
+
+    <!-- Regla aplicada -->
+    <h3>Regla aplicada: Ecuación Exacta con Factor Integrante μ(x)</h3>
+    <p>
+      La ecuación no es exacta en su forma original, ya que
+      ∂M/∂y ≠ ∂N/∂x. Sin embargo, el cociente
+      (∂M/∂y − ∂N/∂x) / N depende únicamente de <em>x</em>, lo que permite
+      hallar un factor integrante μ(x) = x<sup>n</sup> para convertirla en
+      una ecuación exacta e integrable.
+    </p>
+
+    <!-- Modelo matemático -->
+    <h3>Modelo matemático</h3>
+    <p>
+      Sean <em>x</em> e <em>y</em> variables reales con x ≠ 0. Se busca una
+      función F(x, y) tal que:
+    </p>
+    <p class="formula">dF = ∂F/∂x dx + ∂F/∂y dy = 0</p>
+    <p>
+      donde <strong>M(x, y) = x + 4y<sup>2</sup></strong>,
+      <strong>N(x, y) = yx</strong>, y la solución general satisface
+      F(x, y) = C.
+    </p>
+
+    <!-- Procedimiento -->
+    <h3>Procedimiento paso a paso</h3>
+    <ol>
+      <li>
+        <strong>Verificar exactitud:</strong>
+        <p class="formula">∂M/∂y = 8y</p>
+        <p class="formula">∂N/∂x = y</p>
+        <p>Como 8y ≠ y, la ecuación <em>no es exacta</em>.</p>
+      </li>
+      <li>
+        <strong>Calcular el factor integrante:</strong>
+        <p class="formula">(∂M/∂y − ∂N/∂x) / N</p>
+        <p class="formula">= (8y − y) / (yx)</p>
+        <p class="formula">= 7y / (yx)</p>
+        <p class="formula">= 7/x</p>
+        <p>
+          El resultado depende sólo de <em>x</em>, por lo que el factor
+          integrante es:
+        </p>
+        <p class="formula">μ(x) = e<sup>∫(7/x)dx</sup> = e<sup>7 ln|x|</sup> = x<sup>7</sup></p>
+      </li>
+      <li>
+        <strong>Multiplicar la ecuación por μ = x<sup>7</sup>:</strong>
+        <p class="formula">(x<sup>8</sup> + 4x<sup>7</sup>y<sup>2</sup>) dx + x<sup>8</sup>y dy = 0</p>
+        <p>
+          Verificar exactitud:
+          ∂M*/∂y = 8x<sup>7</sup>y = ∂N*/∂x = 8x<sup>7</sup>y ✓
+        </p>
+      </li>
+      <li>
+        <strong>Hallar F integrando M* respecto a x:</strong>
+        <p class="formula">F = ∫(x<sup>8</sup> + 4x<sup>7</sup>y<sup>2</sup>) dx = x<sup>9</sup>/9 + x<sup>8</sup>y<sup>2</sup>/2 + g(y)</p>
+      </li>
+      <li>
+        <strong>Determinar g(y) derivando F respecto a y e igualando a N*:</strong>
+        <p class="formula">∂F/∂y = x<sup>8</sup>y + g'(y) = x<sup>8</sup>y</p>
+        <p class="formula">g'(y) = 0 → g(y) = C<sub>1</sub></p>
+      </li>
+    </ol>
+
+    <!-- Resultado final -->
+    <div class="result">
+      <strong>Resultado:</strong>
+      <p class="formula">x<sup>9</sup>/9 + x<sup>8</sup>y<sup>2</sup>/2 = C</p>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       EJERCICIO D
+       ══════════════════════════════════════════════════════════════ -->
+  <article class="exercise">
+    <h2>Ejercicio d)</h2>
+    <p class="problem">yx dy = −((x + 6y<sup>2</sup>) dx)</p>
+
+    <!-- Regla aplicada -->
+    <h3>Regla aplicada: Ecuación Exacta con Factor Integrante μ(x)</h3>
+    <p>
+      Al igual que el ejercicio anterior, la ecuación en su forma estándar no
+      es exacta (∂M/∂y ≠ ∂N/∂x). El cociente
+      (∂M/∂y − ∂N/∂x) / N depende exclusivamente de <em>x</em>, lo que
+      permite obtener un factor integrante μ(x) = x<sup>n</sup> y transformar
+      la ecuación en una ecuación exacta resoluble.
+    </p>
+
+    <!-- Modelo matemático -->
+    <h3>Modelo matemático</h3>
+    <p>
+      Sean <em>x</em> e <em>y</em> variables reales con x ≠ 0. Se busca F tal que:
+    </p>
+    <p class="formula">dF = ∂F/∂x dx + ∂F/∂y dy = 0</p>
+    <p>
+      donde <strong>M(x, y) = x + 6y<sup>2</sup></strong>,
+      <strong>N(x, y) = yx</strong>, y la solución general satisface
+      F(x, y) = C.
+    </p>
+
+    <!-- Procedimiento -->
+    <h3>Procedimiento paso a paso</h3>
+    <ol>
+      <li>
+        <strong>Reescribir en forma estándar:</strong>
+        <p class="formula">(x + 6y<sup>2</sup>) dx + yx dy = 0</p>
+      </li>
+      <li>
+        <strong>Verificar exactitud:</strong>
+        <p class="formula">∂M/∂y = 12y</p>
+        <p class="formula">∂N/∂x = y</p>
+        <p>Como 12y ≠ y, la ecuación <em>no es exacta</em>.</p>
+      </li>
+      <li>
+        <strong>Calcular el factor integrante:</strong>
+        <p class="formula">(∂M/∂y − ∂N/∂x) / N</p>
+        <p class="formula">= (12y − y) / (yx)</p>
+        <p class="formula">= 11y / (yx)</p>
+        <p class="formula">= 11/x</p>
+        <p>
+          El resultado depende sólo de <em>x</em>, por lo que el factor
+          integrante es:
+        </p>
+        <p class="formula">μ(x) = e<sup>∫(11/x)dx</sup> = e<sup>11 ln|x|</sup> = x<sup>11</sup></p>
+      </li>
+      <li>
+        <strong>Multiplicar la ecuación por μ = x<sup>11</sup>:</strong>
+        <p class="formula">(x<sup>12</sup> + 6x<sup>11</sup>y<sup>2</sup>) dx + x<sup>12</sup>y dy = 0</p>
+        <p>
+          Verificar exactitud:
+          ∂M*/∂y = 12x<sup>11</sup>y = ∂N*/∂x = 12x<sup>11</sup>y ✓
+        </p>
+      </li>
+      <li>
+        <strong>Hallar F integrando M* respecto a x:</strong>
+        <p class="formula">F = ∫(x<sup>12</sup> + 6x<sup>11</sup>y<sup>2</sup>) dx = x<sup>13</sup>/13 + x<sup>12</sup>y<sup>2</sup>/2 + g(y)</p>
+      </li>
+      <li>
+        <strong>Determinar g(y) derivando F respecto a y e igualando a N*:</strong>
+        <p class="formula">∂F/∂y = x<sup>12</sup>y + g'(y) = x<sup>12</sup>y</p>
+        <p class="formula">g'(y) = 0 → g(y) = C<sub>1</sub></p>
+      </li>
+    </ol>
+
+    <!-- Resultado final -->
+    <div class="result">
+      <strong>Resultado:</strong>
+      <p class="formula">x<sup>13</sup>/13 + x<sup>12</sup>y<sup>2</sup>/2 = C</p>
+    </div>
+  </article>
+</section>

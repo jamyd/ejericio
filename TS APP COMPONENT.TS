@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Character } from './character.model';
 import { CharacterService } from './character.service';
+import { ExercisesComponent } from './exercises.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExercisesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
