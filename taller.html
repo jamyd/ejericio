@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller – Ecuaciones Diferenciales</title>
+  <link rel="stylesheet" href="taller.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ══════════════════════ ENCABEZADO ══════════════════════ -->
+    <header class="header">
+      <h1>Taller – Ecuaciones Diferenciales de Primer Orden</h1>
+      <p class="subtitle">Resolución paso a paso · Método de ecuaciones separables y exactas</p>
+    </header>
+
+    <!-- ══════════════════════ LINEAMIENTOS ══════════════════════ -->
+    <section class="guidelines">
+      <h2>Lineamientos generales</h2>
+      <ul>
+        <li>Taller realizado en grupos de tres estudiantes.</li>
+        <li>Para cada ejercicio se indica la regla aplicada y el modelo matemático con sus variables.</li>
+        <li>Se desarrolla el procedimiento paso a paso sin omitir procesos algebraicos.</li>
+        <li>El resultado final de cada ejercicio se presenta dentro de un recuadro rojo.</li>
+      </ul>
+    </section>
+
+    <!-- ══════════════════════ EJERCICIO a ══════════════════════ -->
+    <section class="exercise">
+      <h2>Ejercicio a</h2>
+      <div class="equation-statement">
+        \[ (x^2 + 4x)\,dx + x\,e^{y}\,dy = 0 \]
+      </div>
+
+      <h3>Regla aplicada</h3>
+      <p>
+        Se utiliza el método de <strong>ecuaciones de variables separables</strong>.
+        Una ecuación diferencial ordinaria de primer orden es separable cuando puede escribirse
+        en la forma \(f(x)\,dx = g(y)\,dy\), permitiendo integrar ambos lados de forma
+        independiente.
+      </p>
+
+      <h3>Modelo matemático</h3>
+      <p>Sean \(x\) e \(y\) variables reales independientes. La ecuación diferencial:</p>
+      \[ M(x,y)\,dx + N(x,y)\,dy = 0 \]
+      <p>donde</p>
+      <ul>
+        <li>\(M(x,y) = x^2 + 4x\) — función que multiplica a \(dx\).</li>
+        <li>\(N(x,y) = x\,e^{y}\) — función que multiplica a \(dy\).</li>
+        <li>\(C\) — constante de integración arbitraria.</li>
+      </ul>
+
+      <h3>Procedimiento</h3>
+      <ol class="steps">
+        <li>
+          <strong>Factorizar \(x\) en \(M\):</strong>
+          \[ x(x + 4)\,dx + x\,e^{y}\,dy = 0 \]
+        </li>
+        <li>
+          <strong>Dividir entre \(x\) (con \(x \neq 0\)):</strong>
+          \[ (x + 4)\,dx + e^{y}\,dy = 0 \]
+        </li>
+        <li>
+          <strong>Separar variables:</strong>
+          \[ (x + 4)\,dx = -e^{y}\,dy \]
+        </li>
+        <li>
+          <strong>Integrar ambos miembros:</strong>
+          \[ \int (x + 4)\,dx = -\int e^{y}\,dy \]
+        </li>
+        <li>
+          <strong>Resolver las integrales:</strong>
+          \[ \frac{x^2}{2} + 4x = -e^{y} + C \]
+        </li>
+        <li>
+          <strong>Reordenar sumando \(e^y\) a ambos lados:</strong>
+          \[ \frac{x^2}{2} + 4x + e^{y} = C \]
+        </li>
+      </ol>
+
+      <div class="result">
+        <strong>Solución general:</strong>
+        \[ \frac{x^2}{2} + 4x + e^{y} = C \]
+      </div>
+    </section>
+
+    <!-- ══════════════════════ EJERCICIO b ══════════════════════ -->
+    <section class="exercise">
+      <h2>Ejercicio b</h2>
+      <div class="equation-statement">
+        \[ (x^2 + 8x)\,dx = -(x\,e^{y}\,dy) \]
+      </div>
+
+      <h3>Regla aplicada</h3>
+      <p>
+        Se utiliza el método de <strong>ecuaciones de variables separables</strong>.
+        Al reorganizar la ecuación se obtiene una forma separable que permite integrar
+        cada variable de forma independiente.
+      </p>
+
+      <h3>Modelo matemático</h3>
+      <p>Sean \(x\) e \(y\) variables reales independientes. La ecuación diferencial:</p>
+      \[ M(x,y)\,dx + N(x,y)\,dy = 0 \]
+      <p>donde</p>
+      <ul>
+        <li>\(M(x,y) = x^2 + 8x\) — función que multiplica a \(dx\).</li>
+        <li>\(N(x,y) = x\,e^{y}\) — función que multiplica a \(dy\).</li>
+        <li>\(C\) — constante de integración arbitraria.</li>
+      </ul>
+
+      <h3>Procedimiento</h3>
+      <ol class="steps">
+        <li>
+          <strong>Pasar el término derecho al lado izquierdo:</strong>
+          \[ (x^2 + 8x)\,dx + x\,e^{y}\,dy = 0 \]
+        </li>
+        <li>
+          <strong>Factorizar \(x\):</strong>
+          \[ x(x + 8)\,dx + x\,e^{y}\,dy = 0 \]
+        </li>
+        <li>
+          <strong>Dividir entre \(x\) (con \(x \neq 0\)):</strong>
+          \[ (x + 8)\,dx + e^{y}\,dy = 0 \]
+        </li>
+        <li>
+          <strong>Separar variables:</strong>
+          \[ (x + 8)\,dx = -e^{y}\,dy \]
+        </li>
+        <li>
+          <strong>Integrar ambos miembros:</strong>
+          \[ \int (x + 8)\,dx = -\int e^{y}\,dy \]
+        </li>
+        <li>
+          <strong>Resolver las integrales:</strong>
+          \[ \frac{x^2}{2} + 8x = -e^{y} + C \]
+        </li>
+        <li>
+          <strong>Reordenar:</strong>
+          \[ \frac{x^2}{2} + 8x + e^{y} = C \]
+        </li>
+      </ol>
+
+      <div class="result">
+        <strong>Solución general:</strong>
+        \[ \frac{x^2}{2} + 8x + e^{y} = C \]
+      </div>
+    </section>
+
+    <!-- ══════════════════════ EJERCICIO c ══════════════════════ -->
+    <section class="exercise">
+      <h2>Ejercicio c</h2>
+      <div class="equation-statement">
+        \[ (x^2 + 4y^2)\,dx + y\,x\,dy = 0 \]
+      </div>
+
+      <h3>Regla aplicada</h3>
+      <p>
+        Se utiliza el método de <strong>ecuaciones diferenciales exactas con factor
+        integrante</strong>. Cuando \(\partial M/\partial y \neq \partial N/\partial x\)
+        pero la expresión \(\dfrac{\partial M/\partial y - \partial N/\partial x}{N}\)
+        depende únicamente de \(x\), se puede encontrar un factor integrante
+        \(\mu(x) = e^{\int h(x)\,dx}\) que convierte la ecuación en exacta.
+      </p>
+
+      <h3>Modelo matemático</h3>
+      <p>Sean \(x\) e \(y\) variables reales independientes. La ecuación diferencial:</p>
+      \[ M(x,y)\,dx + N(x,y)\,dy = 0 \]
+      <p>donde</p>
+      <ul>
+        <li>\(M(x,y) = x^2 + 4y^2\) — función que multiplica a \(dx\).</li>
+        <li>\(N(x,y) = xy\) — función que multiplica a \(dy\).</li>
+        <li>\(\mu(x)\) — factor integrante dependiente sólo de \(x\).</li>
+        <li>\(F(x,y)\) — función potencial tal que \(dF = 0\).</li>
+        <li>\(C\) — constante de integración arbitraria.</li>
+      </ul>
+
+      <h3>Procedimiento</h3>
+      <ol class="steps">
+        <li>
+          <strong>Verificar si la ecuación es exacta:</strong>
+          \[
+            \frac{\partial M}{\partial y} = 8y, \qquad
+            \frac{\partial N}{\partial x} = y
+          \]
+          Como \(8y \neq y\), la ecuación <em>no es exacta</em>.
+        </li>
+        <li>
+          <strong>Calcular la función auxiliar \(h(x)\):</strong>
+          \[
+            h(x) = \frac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+                 = \frac{8y - y}{xy} = \frac{7y}{xy} = \frac{7}{x}
+          \]
+          Depende sólo de \(x\) → existe factor integrante \(\mu(x)\).
+        </li>
+        <li>
+          <strong>Calcular el factor integrante:</strong>
+          \[
+            \mu(x) = e^{\int \frac{7}{x}\,dx} = e^{7\ln|x|} = x^7
+          \]
+        </li>
+        <li>
+          <strong>Multiplicar toda la ecuación por \(\mu = x^7\):</strong>
+          \[
+            (x^9 + 4x^7 y^2)\,dx + x^8 y\,dy = 0
+          \]
+        </li>
+        <li>
+          <strong>Verificar exactitud con la ecuación transformada:</strong>
+          \[
+            \frac{\partial}{\partial y}(x^9 + 4x^7 y^2) = 8x^7 y, \qquad
+            \frac{\partial}{\partial x}(x^8 y) = 8x^7 y \quad \checkmark
+          \]
+        </li>
+        <li>
+          <strong>Encontrar la función potencial \(F(x,y)\) integrando \(M^*\) respecto a \(x\):</strong>
+          \[
+            F = \int (x^9 + 4x^7 y^2)\,dx = \frac{x^{10}}{10} + \frac{x^8 y^2}{2} + g(y)
+          \]
+        </li>
+        <li>
+          <strong>Determinar \(g(y)\) derivando respecto a \(y\) e igualando a \(N^*\):</strong>
+          \[
+            \frac{\partial F}{\partial y} = x^8 y + g'(y) = x^8 y
+            \implies g'(y) = 0 \implies g(y) = K
+          \]
+        </li>
+        <li>
+          <strong>Escribir la solución implícita \(F(x,y) = C\):</strong>
+          \[
+            \frac{x^{10}}{10} + \frac{x^8 y^2}{2} = C
+          \]
+          Multiplicando por 10:
+          \[
+            x^{10} + 5x^8 y^2 = C
+          \]
+        </li>
+      </ol>
+
+      <div class="result">
+        <strong>Solución general:</strong>
+        \[ x^{10} + 5x^8 y^2 = C \]
+      </div>
+    </section>
+
+    <!-- ══════════════════════ EJERCICIO d ══════════════════════ -->
+    <section class="exercise">
+      <h2>Ejercicio d</h2>
+      <div class="equation-statement">
+        \[ y\,x\,dy = -\bigl((x^2 + 6y^2)\,dx\bigr) \]
+      </div>
+
+      <h3>Regla aplicada</h3>
+      <p>
+        Se utiliza el método de <strong>ecuaciones diferenciales exactas con factor
+        integrante</strong>. Al igual que en el ejercicio anterior, se comprueba que la
+        ecuación no es exacta, se calcula el factor integrante \(\mu(x)\) y se resuelve
+        la ecuación transformada.
+      </p>
+
+      <h3>Modelo matemático</h3>
+      <p>Sean \(x\) e \(y\) variables reales independientes. La ecuación diferencial:</p>
+      \[ M(x,y)\,dx + N(x,y)\,dy = 0 \]
+      <p>donde</p>
+      <ul>
+        <li>\(M(x,y) = x^2 + 6y^2\) — función que multiplica a \(dx\).</li>
+        <li>\(N(x,y) = xy\) — función que multiplica a \(dy\).</li>
+        <li>\(\mu(x)\) — factor integrante dependiente sólo de \(x\).</li>
+        <li>\(F(x,y)\) — función potencial tal que \(dF = 0\).</li>
+        <li>\(C\) — constante de integración arbitraria.</li>
+      </ul>
+
+      <h3>Procedimiento</h3>
+      <ol class="steps">
+        <li>
+          <strong>Reorganizar la ecuación en forma estándar:</strong>
+          \[
+            (x^2 + 6y^2)\,dx + xy\,dy = 0
+          \]
+        </li>
+        <li>
+          <strong>Verificar si la ecuación es exacta:</strong>
+          \[
+            \frac{\partial M}{\partial y} = 12y, \qquad
+            \frac{\partial N}{\partial x} = y
+          \]
+          Como \(12y \neq y\), la ecuación <em>no es exacta</em>.
+        </li>
+        <li>
+          <strong>Calcular la función auxiliar \(h(x)\):</strong>
+          \[
+            h(x) = \frac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+                 = \frac{12y - y}{xy} = \frac{11y}{xy} = \frac{11}{x}
+          \]
+          Depende sólo de \(x\) → existe factor integrante \(\mu(x)\).
+        </li>
+        <li>
+          <strong>Calcular el factor integrante:</strong>
+          \[
+            \mu(x) = e^{\int \frac{11}{x}\,dx} = e^{11\ln|x|} = x^{11}
+          \]
+        </li>
+        <li>
+          <strong>Multiplicar toda la ecuación por \(\mu = x^{11}\):</strong>
+          \[
+            (x^{13} + 6x^{11} y^2)\,dx + x^{12} y\,dy = 0
+          \]
+        </li>
+        <li>
+          <strong>Verificar exactitud con la ecuación transformada:</strong>
+          \[
+            \frac{\partial}{\partial y}(x^{13} + 6x^{11} y^2) = 12x^{11} y, \qquad
+            \frac{\partial}{\partial x}(x^{12} y) = 12x^{11} y \quad \checkmark
+          \]
+        </li>
+        <li>
+          <strong>Encontrar la función potencial \(F(x,y)\):</strong>
+          \[
+            F = \int (x^{13} + 6x^{11} y^2)\,dx = \frac{x^{14}}{14} + \frac{x^{12} y^2}{2} + g(y)
+          \]
+        </li>
+        <li>
+          <strong>Determinar \(g(y)\):</strong>
+          \[
+            \frac{\partial F}{\partial y} = x^{12} y + g'(y) = x^{12} y
+            \implies g'(y) = 0 \implies g(y) = K
+          \]
+        </li>
+        <li>
+          <strong>Escribir la solución implícita \(F(x,y) = C\):</strong>
+          \[
+            \frac{x^{14}}{14} + \frac{x^{12} y^2}{2} = C
+          \]
+          Multiplicando por 14:
+          \[
+            x^{14} + 7x^{12} y^2 = C
+          \]
+        </li>
+      </ol>
+
+      <div class="result">
+        <strong>Solución general:</strong>
+        \[ x^{14} + 7x^{12} y^2 = C \]
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Taller – Ecuaciones Diferenciales de Primer Orden &nbsp;|&nbsp; Formato académico institucional</p>
+    </footer>
+
+  </div>
+</body>
+</html>

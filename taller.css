@@ -1,0 +1,155 @@
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: #f5f5f0;
+  color: #1a1a1a;
+  line-height: 1.75;
+}
+
+/* ── Page wrapper ─────────────────────────────────────────── */
+.page {
+  max-width: 860px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 48px 56px;
+  border: 1px solid #d0c8b8;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  border-bottom: 3px double #8b0000;
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  font-size: 1.65rem;
+  color: #1a1a1a;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* ── Section headings ─────────────────────────────────────── */
+h2 {
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 20px 0 8px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Guidelines block ─────────────────────────────────────── */
+.guidelines {
+  background: #faf8f2;
+  border-left: 4px solid #8b6914;
+  padding: 16px 20px;
+  margin-bottom: 40px;
+  border-radius: 2px;
+}
+
+.guidelines ul {
+  padding-left: 20px;
+}
+
+.guidelines li {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+}
+
+/* ── Exercise section ─────────────────────────────────────── */
+.exercise {
+  margin-bottom: 52px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #e0dcd4;
+}
+
+.exercise:last-of-type {
+  border-bottom: none;
+}
+
+/* ── Equation statement (display box) ─────────────────────── */
+.equation-statement {
+  background: #f0f4ff;
+  border: 1px solid #b0bce0;
+  border-radius: 6px;
+  padding: 16px 24px;
+  margin: 12px 0 20px;
+  overflow-x: auto;
+}
+
+/* ── Unordered lists (variables) ──────────────────────────── */
+ul {
+  padding-left: 24px;
+  margin: 8px 0 12px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+/* ── Ordered steps list ───────────────────────────────────── */
+.steps {
+  padding-left: 28px;
+  margin: 8px 0 16px;
+  counter-reset: step;
+}
+
+.steps li {
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+/* ── Result box (red border as required) ──────────────────── */
+.result {
+  border: 3px solid #b91c1c;
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin-top: 20px;
+  background: #fff5f5;
+  color: #7f1d1d;
+  overflow-x: auto;
+}
+
+.result strong {
+  display: block;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  color: #b91c1c;
+}
+
+/* ── MathJax alignment tweaks ─────────────────────────────── */
+mjx-container[display="true"] {
+  margin: 12px 0;
+  overflow-x: auto;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #777;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
