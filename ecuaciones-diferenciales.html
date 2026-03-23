@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller – Ecuaciones Diferenciales</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6fa;
+      color: #1a1a2e;
+      line-height: 1.75;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 55%, #0f3460 100%);
+      color: #fff;
+      padding: 36px 32px 28px;
+      border-radius: 14px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.8rem; margin-bottom: 8px; letter-spacing: .4px; }
+    header p  { font-size: .97rem; opacity: .85; }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0f3460;
+      border-left: 5px solid #e94560;
+      padding-left: 12px;
+      margin: 42px 0 18px;
+    }
+
+    /* ── Exercise card ── */
+    .exercise {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.07);
+      padding: 28px 30px;
+      margin-bottom: 32px;
+    }
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .badge {
+      background: #0f3460;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .exercise-eq {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #16213e;
+    }
+
+    /* ── Info blocks ── */
+    .block {
+      background: #f8f9fb;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 14px;
+    }
+    .block-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      color: #e94560;
+      margin-bottom: 8px;
+    }
+
+    /* ── Equation display rows ── */
+    .eq-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin: 10px 0;
+    }
+    .eq-block {
+      background: #eef1f7;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 1rem;
+      font-family: 'Cambria', 'Georgia', serif;
+      color: #0f3460;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .arrow { color: #555; font-size: 1.1rem; padding: 0 4px; }
+
+    /* ── Step list ── */
+    .steps { list-style: none; counter-reset: step; }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px dashed #dde2ee;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      content: counter(step);
+      background: #e8edf5;
+      color: #0f3460;
+      font-weight: 700;
+      font-size: .82rem;
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .steps li > div { flex: 1; }
+    .step-title { font-weight: 600; margin-bottom: 6px; color: #16213e; }
+
+    /* ── Fraction ── */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      gap: 1px;
+      margin: 0 3px;
+    }
+    .frac-num, .frac-den { padding: 0 4px; font-size: .9em; line-height: 1.2; }
+    .frac-bar { width: 100%; border-top: 1.5px solid currentColor; }
+
+    /* ── Math symbols ── */
+    .sym { font-family: 'Cambria','Georgia',serif; font-style: italic; }
+    sup, sub { font-size: .72em; }
+
+    /* ── Integral sign ── */
+    .int-sign { font-size: 1.5em; line-height: .8; vertical-align: middle; }
+
+    /* ── Result box (red border as required) ── */
+    .result {
+      border: 2.5px solid #cc0000;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 20px;
+      background: #fff8f8;
+      text-align: center;
+    }
+    .result-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      color: #cc0000;
+      margin-bottom: 10px;
+    }
+    .result-eq {
+      font-size: 1.3rem;
+      font-family: 'Cambria','Georgia',serif;
+      color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      border: 2px solid #0f3460;
+      border-radius: 6px;
+      padding: 10px 18px;
+      display: inline-block;
+    }
+
+    /* ── Check mark ── */
+    .check { color: #15803d; font-weight: 700; }
+
+    @media (max-width: 600px) {
+      .exercise { padding: 18px 14px; }
+      header h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header>
+    <h1>Taller de Ecuaciones Diferenciales</h1>
+    <p>Solución paso a paso &nbsp;·&nbsp; Ecuaciones Exactas y Separables</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       EJERCICIO a)
+       (x + 4x) dx + x·e^y dy = 0
+       Método: Separable
+  ═══════════════════════════════════════ -->
+  <div class="section-title">Ejercicio a)</div>
+  <div class="exercise">
+    <div class="exercise-header">
+      <div class="badge">a</div>
+      <div class="exercise-eq">
+        (<span class="sym">x</span> + 4<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+        + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0
+      </div>
+    </div>
+
+    <!-- Regla -->
+    <div class="block">
+      <div class="block-label">Regla aplicada</div>
+      <p>
+        <strong>Ecuación diferencial separable.</strong>
+        Una ecuación es separable cuando puede escribirse en la forma
+        <em>M</em>(<span class="sym">x</span>)&thinsp;<span class="sym">dx</span> +
+        <em>N</em>(<span class="sym">y</span>)&thinsp;<span class="sym">dy</span> = 0,
+        permitiendo integrar cada lado independientemente:
+      </p>
+      <div class="eq-row">
+        <div class="eq-block">
+          <span class="int-sign">∫</span><em>M</em>(<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+          + <span class="int-sign">∫</span><em>N</em>(<span class="sym">y</span>)&thinsp;<span class="sym">dy</span>
+          = <em>C</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modelo -->
+    <div class="block">
+      <div class="block-label">Modelo matemático</div>
+      <p>
+        Sean <span class="sym">x</span> la variable independiente e
+        <span class="sym">y</span> la variable dependiente, ambas funciones
+        reales y diferenciables. La ecuación expresa la relación diferencial:
+      </p>
+      <div class="eq-row">
+        <div class="eq-block">
+          (<span class="sym">x</span> + 4<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+          + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0
+        </div>
+      </div>
+    </div>
+
+    <!-- Procedimiento -->
+    <div class="block">
+      <div class="block-label">Procedimiento paso a paso</div>
+      <ol class="steps">
+        <li>
+          <div>
+            <div class="step-title">Simplificar el primer factor</div>
+            <div class="eq-row">
+              <div class="eq-block"><span class="sym">x</span> + 4<span class="sym">x</span> = 5<span class="sym">x</span></div>
+            </div>
+            <p>La ecuación queda:</p>
+            <div class="eq-row">
+              <div class="eq-block">5<span class="sym">x</span>&thinsp;<span class="sym">dx</span>
+              + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Dividir toda la ecuación por <span class="sym">x</span> (con <span class="sym">x</span> ≠ 0)</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="frac"><span class="frac-num">5<span class="sym">x</span>&thinsp;<span class="sym">dx</span></span><span class="frac-bar"></span><span class="frac-den"><span class="sym">x</span></span></span>
+                +
+                <span class="frac"><span class="frac-num"><span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span></span><span class="frac-bar"></span><span class="frac-den"><span class="sym">x</span></span></span>
+                = 0
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block">5&thinsp;<span class="sym">dx</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Separar variables</div>
+            <div class="eq-row">
+              <div class="eq-block">5&thinsp;<span class="sym">dx</span> = &minus;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Integrar ambos lados</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="int-sign">∫</span>5&thinsp;<span class="sym">dx</span> = &minus;<span class="int-sign">∫</span><span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span>
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block">5<span class="sym">x</span> = &minus;<span class="sym">e</span><sup><span class="sym">y</span></sup> + <em>C</em></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Reordenar</div>
+            <div class="eq-row">
+              <div class="eq-block">5<span class="sym">x</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup> = <em>C</em></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="result">
+      <div class="result-label">Resultado final</div>
+      <div class="result-eq">5<span class="sym">x</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup> = <em>C</em></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       EJERCICIO b)
+       (x + 8x) dx = -(x·e^y dy)
+       Método: Separable
+  ═══════════════════════════════════════ -->
+  <div class="section-title">Ejercicio b)</div>
+  <div class="exercise">
+    <div class="exercise-header">
+      <div class="badge">b</div>
+      <div class="exercise-eq">
+        (<span class="sym">x</span> + 8<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+        = &minus;(<span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span>)
+      </div>
+    </div>
+
+    <!-- Regla -->
+    <div class="block">
+      <div class="block-label">Regla aplicada</div>
+      <p>
+        <strong>Ecuación diferencial separable.</strong>
+        Se lleva la ecuación a la forma estándar
+        <em>M</em>&thinsp;<span class="sym">dx</span> + <em>N</em>&thinsp;<span class="sym">dy</span> = 0
+        y se integra cada lado de forma independiente.
+      </p>
+    </div>
+
+    <!-- Modelo -->
+    <div class="block">
+      <div class="block-label">Modelo matemático</div>
+      <p>
+        La ecuación dada es equivalente a la forma estándar con
+        <span class="sym">M</span>(<span class="sym">x</span>) y
+        <span class="sym">N</span>(<span class="sym">y</span>) separados:
+      </p>
+      <div class="eq-row">
+        <div class="eq-block">
+          (<span class="sym">x</span> + 8<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+          + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0
+        </div>
+      </div>
+    </div>
+
+    <!-- Procedimiento -->
+    <div class="block">
+      <div class="block-label">Procedimiento paso a paso</div>
+      <ol class="steps">
+        <li>
+          <div>
+            <div class="step-title">Llevar al lado izquierdo el término con <span class="sym">dy</span></div>
+            <div class="eq-row">
+              <div class="eq-block">
+                (<span class="sym">x</span> + 8<span class="sym">x</span>)&thinsp;<span class="sym">dx</span>
+                + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Simplificar el primer factor</div>
+            <div class="eq-row">
+              <div class="eq-block"><span class="sym">x</span> + 8<span class="sym">x</span> = 9<span class="sym">x</span></div>
+            </div>
+            <p>La ecuación queda:</p>
+            <div class="eq-row">
+              <div class="eq-block">9<span class="sym">x</span>&thinsp;<span class="sym">dx</span>
+              + <span class="sym">x</span>&thinsp;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Dividir por <span class="sym">x</span> (con <span class="sym">x</span> ≠ 0)</div>
+            <div class="eq-row">
+              <div class="eq-block">9&thinsp;<span class="sym">dx</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span> = 0</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Separar variables</div>
+            <div class="eq-row">
+              <div class="eq-block">9&thinsp;<span class="sym">dx</span> = &minus;<span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Integrar ambos lados</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="int-sign">∫</span>9&thinsp;<span class="sym">dx</span> = &minus;<span class="int-sign">∫</span><span class="sym">e</span><sup><span class="sym">y</span></sup>&thinsp;<span class="sym">dy</span>
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block">9<span class="sym">x</span> = &minus;<span class="sym">e</span><sup><span class="sym">y</span></sup> + <em>C</em></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Reordenar</div>
+            <div class="eq-row">
+              <div class="eq-block">9<span class="sym">x</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup> = <em>C</em></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="result">
+      <div class="result-label">Resultado final</div>
+      <div class="result-eq">9<span class="sym">x</span> + <span class="sym">e</span><sup><span class="sym">y</span></sup> = <em>C</em></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       EJERCICIO c)
+       (x + 4y²) dx + yx dy = 0
+       Método: Factor integrante μ(x) = x^7
+  ═══════════════════════════════════════ -->
+  <div class="section-title">Ejercicio c)</div>
+  <div class="exercise">
+    <div class="exercise-header">
+      <div class="badge">c</div>
+      <div class="exercise-eq">
+        (<span class="sym">x</span> + 4<span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+        + <span class="sym">yx</span>&thinsp;<span class="sym">dy</span> = 0
+      </div>
+    </div>
+
+    <!-- Regla -->
+    <div class="block">
+      <div class="block-label">Regla aplicada</div>
+      <p>
+        <strong>Factor integrante dependiente solo de <span class="sym">x</span>.</strong>
+        Cuando la ecuación <em>M dx</em> + <em>N dy</em> = 0 no es exacta, pero la expresión
+      </p>
+      <div class="eq-row">
+        <div class="eq-block">
+          <span class="sym">f</span>(<span class="sym">x</span>) =
+          <span class="frac">
+            <span class="frac-num">∂<em>M</em>/∂<span class="sym">y</span> − ∂<em>N</em>/∂<span class="sym">x</span></span>
+            <span class="frac-bar"></span>
+            <span class="frac-den"><em>N</em></span>
+          </span>
+        </div>
+      </div>
+      <p>
+        depende únicamente de <span class="sym">x</span>, el factor integrante
+        <span class="sym">μ</span>(<span class="sym">x</span>) = <em>e</em><sup>∫<span class="sym">f</span>(<span class="sym">x</span>)<span class="sym">dx</span></sup>
+        convierte la ecuación en exacta.
+      </p>
+    </div>
+
+    <!-- Modelo -->
+    <div class="block">
+      <div class="block-label">Modelo matemático</div>
+      <p>
+        Sean <em>M</em>(<span class="sym">x</span>,<span class="sym">y</span>) =
+        <span class="sym">x</span> + 4<span class="sym">y</span><sup>2</sup> y
+        <em>N</em>(<span class="sym">x</span>,<span class="sym">y</span>) =
+        <span class="sym">xy</span> las funciones que definen la ecuación:
+      </p>
+      <div class="eq-row">
+        <div class="eq-block"><em>M</em>&thinsp;<span class="sym">dx</span> + <em>N</em>&thinsp;<span class="sym">dy</span> = 0</div>
+      </div>
+      <p>
+        Una solución implícita <em>F</em>(<span class="sym">x</span>,<span class="sym">y</span>) = <em>C</em>
+        existe si ∂<em>F</em>/∂<span class="sym">x</span> = <span class="sym">μM</span>
+        y ∂<em>F</em>/∂<span class="sym">y</span> = <span class="sym">μN</span>.
+      </p>
+    </div>
+
+    <!-- Procedimiento -->
+    <div class="block">
+      <div class="block-label">Procedimiento paso a paso</div>
+      <ol class="steps">
+        <li>
+          <div>
+            <div class="step-title">Identificar <em>M</em> y <em>N</em></div>
+            <div class="eq-row">
+              <div class="eq-block"><em>M</em> = <span class="sym">x</span> + 4<span class="sym">y</span><sup>2</sup></div>
+              <div class="eq-block"><em>N</em> = <span class="sym">xy</span></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Verificar exactitud</div>
+            <div class="eq-row">
+              <div class="eq-block">∂<em>M</em>/∂<span class="sym">y</span> = 8<span class="sym">y</span></div>
+              <div class="eq-block">∂<em>N</em>/∂<span class="sym">x</span> = <span class="sym">y</span></div>
+            </div>
+            <p>Como 8<span class="sym">y</span> ≠ <span class="sym">y</span>, la ecuación <strong>no es exacta</strong>.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Calcular el factor integrante</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="sym">f</span>(<span class="sym">x</span>) =
+                <span class="frac">
+                  <span class="frac-num">8<span class="sym">y</span> − <span class="sym">y</span></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">xy</span></span>
+                </span>
+                =
+                <span class="frac">
+                  <span class="frac-num">7<span class="sym">y</span></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">xy</span></span>
+                </span>
+                =
+                <span class="frac">
+                  <span class="frac-num">7</span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">x</span></span>
+                </span>
+              </div>
+            </div>
+            <p>Como <span class="sym">f</span>(<span class="sym">x</span>) depende solo de <span class="sym">x</span>:</p>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="sym">μ</span>(<span class="sym">x</span>) =
+                <span class="sym">e</span><sup>∫(7/<span class="sym">x</span>)<span class="sym">dx</span></sup>
+                = <span class="sym">e</span><sup>7 ln|<span class="sym">x</span>|</sup>
+                = <span class="sym">x</span><sup>7</sup>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Multiplicar la ecuación por <span class="sym">μ</span> = <span class="sym">x</span><sup>7</sup></div>
+            <div class="eq-row">
+              <div class="eq-block">
+                (<span class="sym">x</span><sup>8</sup> + 4<span class="sym">x</span><sup>7</sup><span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+                + <span class="sym">x</span><sup>8</sup><span class="sym">y</span>&thinsp;<span class="sym">dy</span> = 0
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Verificar exactitud de la nueva ecuación</div>
+            <div class="eq-row">
+              <div class="eq-block">∂<em>M̃</em>/∂<span class="sym">y</span> = 8<span class="sym">x</span><sup>7</sup><span class="sym">y</span></div>
+              <div class="eq-block">∂<em>Ñ</em>/∂<span class="sym">x</span> = 8<span class="sym">x</span><sup>7</sup><span class="sym">y</span></div>
+              <span class="check">✓ Exacta</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Hallar la función potencial <em>F</em>(<span class="sym">x</span>,<span class="sym">y</span>)</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <em>F</em> = <span class="int-sign">∫</span>(<span class="sym">x</span><sup>8</sup> + 4<span class="sym">x</span><sup>7</sup><span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+                =
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>9</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">9</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num">4<span class="sym">x</span><sup>8</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">8</span>
+                </span>
+                + <span class="sym">g</span>(<span class="sym">y</span>)
+                =
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>9</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">9</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>8</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">2</span>
+                </span>
+                + <span class="sym">g</span>(<span class="sym">y</span>)
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Determinar <span class="sym">g</span>(<span class="sym">y</span>)</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                ∂<em>F</em>/∂<span class="sym">y</span> =
+                <span class="sym">x</span><sup>8</sup><span class="sym">y</span> + <span class="sym">g</span>′(<span class="sym">y</span>)
+                = <em>Ñ</em> = <span class="sym">x</span><sup>8</sup><span class="sym">y</span>
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block"><span class="sym">g</span>′(<span class="sym">y</span>) = 0 &nbsp;⟹&nbsp; <span class="sym">g</span>(<span class="sym">y</span>) = <em>k</em></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Escribir la solución general</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>9</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">9</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>8</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">2</span>
+                </span>
+                = <em>C</em>
+              </div>
+            </div>
+            <p>Multiplicando por 18 para eliminar fracciones:</p>
+            <div class="eq-row">
+              <div class="eq-block">2<span class="sym">x</span><sup>9</sup> + 9<span class="sym">x</span><sup>8</sup><span class="sym">y</span><sup>2</sup> = <em>C</em></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="result">
+      <div class="result-label">Resultado final</div>
+      <div class="result-eq">2<span class="sym">x</span><sup>9</sup> + 9<span class="sym">x</span><sup>8</sup><span class="sym">y</span><sup>2</sup> = <em>C</em></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       EJERCICIO d)
+       yx dy = -((x + 6y²) dx)
+       Método: Factor integrante μ(x) = x^11
+  ═══════════════════════════════════════ -->
+  <div class="section-title">Ejercicio d)</div>
+  <div class="exercise">
+    <div class="exercise-header">
+      <div class="badge">d</div>
+      <div class="exercise-eq">
+        <span class="sym">yx</span>&thinsp;<span class="sym">dy</span>
+        = &minus;((<span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>)
+      </div>
+    </div>
+
+    <!-- Regla -->
+    <div class="block">
+      <div class="block-label">Regla aplicada</div>
+      <p>
+        <strong>Factor integrante dependiente solo de <span class="sym">x</span>.</strong>
+        Se aplica el mismo método del ejercicio c): si la ecuación no es exacta
+        pero la expresión (∂<em>M</em>/∂<span class="sym">y</span> − ∂<em>N</em>/∂<span class="sym">x</span>) / <em>N</em>
+        depende solo de <span class="sym">x</span>, el factor integrante
+        <span class="sym">μ</span>(<span class="sym">x</span>) transforma la ecuación en exacta.
+      </p>
+    </div>
+
+    <!-- Modelo -->
+    <div class="block">
+      <div class="block-label">Modelo matemático</div>
+      <p>Reescribiendo en forma estándar <em>M dx</em> + <em>N dy</em> = 0:</p>
+      <div class="eq-row">
+        <div class="eq-block">
+          (<span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+          + <span class="sym">xy</span>&thinsp;<span class="sym">dy</span> = 0
+        </div>
+      </div>
+      <p>
+        con <em>M</em>(<span class="sym">x</span>,<span class="sym">y</span>) =
+        <span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup> y
+        <em>N</em>(<span class="sym">x</span>,<span class="sym">y</span>) = <span class="sym">xy</span>.
+      </p>
+    </div>
+
+    <!-- Procedimiento -->
+    <div class="block">
+      <div class="block-label">Procedimiento paso a paso</div>
+      <ol class="steps">
+        <li>
+          <div>
+            <div class="step-title">Reescribir en forma estándar</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="sym">yx</span>&thinsp;<span class="sym">dy</span>
+                + (<span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span> = 0
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block">
+                (<span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+                + <span class="sym">xy</span>&thinsp;<span class="sym">dy</span> = 0
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Identificar <em>M</em> y <em>N</em></div>
+            <div class="eq-row">
+              <div class="eq-block"><em>M</em> = <span class="sym">x</span> + 6<span class="sym">y</span><sup>2</sup></div>
+              <div class="eq-block"><em>N</em> = <span class="sym">xy</span></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Verificar exactitud</div>
+            <div class="eq-row">
+              <div class="eq-block">∂<em>M</em>/∂<span class="sym">y</span> = 12<span class="sym">y</span></div>
+              <div class="eq-block">∂<em>N</em>/∂<span class="sym">x</span> = <span class="sym">y</span></div>
+            </div>
+            <p>Como 12<span class="sym">y</span> ≠ <span class="sym">y</span>, la ecuación <strong>no es exacta</strong>.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Calcular el factor integrante</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="sym">f</span>(<span class="sym">x</span>) =
+                <span class="frac">
+                  <span class="frac-num">12<span class="sym">y</span> − <span class="sym">y</span></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">xy</span></span>
+                </span>
+                =
+                <span class="frac">
+                  <span class="frac-num">11<span class="sym">y</span></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">xy</span></span>
+                </span>
+                =
+                <span class="frac">
+                  <span class="frac-num">11</span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den"><span class="sym">x</span></span>
+                </span>
+              </div>
+            </div>
+            <p>Como <span class="sym">f</span>(<span class="sym">x</span>) depende solo de <span class="sym">x</span>:</p>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="sym">μ</span>(<span class="sym">x</span>) =
+                <span class="sym">e</span><sup>∫(11/<span class="sym">x</span>)<span class="sym">dx</span></sup>
+                = <span class="sym">e</span><sup>11 ln|<span class="sym">x</span>|</sup>
+                = <span class="sym">x</span><sup>11</sup>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Multiplicar la ecuación por <span class="sym">μ</span> = <span class="sym">x</span><sup>11</sup></div>
+            <div class="eq-row">
+              <div class="eq-block">
+                (<span class="sym">x</span><sup>12</sup> + 6<span class="sym">x</span><sup>11</sup><span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+                + <span class="sym">x</span><sup>12</sup><span class="sym">y</span>&thinsp;<span class="sym">dy</span> = 0
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Verificar exactitud de la nueva ecuación</div>
+            <div class="eq-row">
+              <div class="eq-block">∂<em>M̃</em>/∂<span class="sym">y</span> = 12<span class="sym">x</span><sup>11</sup><span class="sym">y</span></div>
+              <div class="eq-block">∂<em>Ñ</em>/∂<span class="sym">x</span> = 12<span class="sym">x</span><sup>11</sup><span class="sym">y</span></div>
+              <span class="check">✓ Exacta</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Hallar la función potencial <em>F</em>(<span class="sym">x</span>,<span class="sym">y</span>)</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <em>F</em> = <span class="int-sign">∫</span>(<span class="sym">x</span><sup>12</sup> + 6<span class="sym">x</span><sup>11</sup><span class="sym">y</span><sup>2</sup>)&thinsp;<span class="sym">dx</span>
+                =
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>13</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">13</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num">6<span class="sym">x</span><sup>12</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">12</span>
+                </span>
+                + <span class="sym">g</span>(<span class="sym">y</span>)
+                =
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>13</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">13</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>12</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">2</span>
+                </span>
+                + <span class="sym">g</span>(<span class="sym">y</span>)
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Determinar <span class="sym">g</span>(<span class="sym">y</span>)</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                ∂<em>F</em>/∂<span class="sym">y</span> =
+                <span class="sym">x</span><sup>12</sup><span class="sym">y</span> + <span class="sym">g</span>′(<span class="sym">y</span>)
+                = <em>Ñ</em> = <span class="sym">x</span><sup>12</sup><span class="sym">y</span>
+              </div>
+              <span class="arrow">⟹</span>
+              <div class="eq-block"><span class="sym">g</span>′(<span class="sym">y</span>) = 0 &nbsp;⟹&nbsp; <span class="sym">g</span>(<span class="sym">y</span>) = <em>k</em></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="step-title">Escribir la solución general</div>
+            <div class="eq-row">
+              <div class="eq-block">
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>13</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">13</span>
+                </span>
+                +
+                <span class="frac">
+                  <span class="frac-num"><span class="sym">x</span><sup>12</sup><span class="sym">y</span><sup>2</sup></span>
+                  <span class="frac-bar"></span>
+                  <span class="frac-den">2</span>
+                </span>
+                = <em>C</em>
+              </div>
+            </div>
+            <p>Multiplicando por 26 para eliminar fracciones:</p>
+            <div class="eq-row">
+              <div class="eq-block">2<span class="sym">x</span><sup>13</sup> + 13<span class="sym">x</span><sup>12</sup><span class="sym">y</span><sup>2</sup> = <em>C</em></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="result">
+      <div class="result-label">Resultado final</div>
+      <div class="result-eq">2<span class="sym">x</span><sup>13</sup> + 13<span class="sym">x</span><sup>12</sup><span class="sym">y</span><sup>2</sup> = <em>C</em></div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
