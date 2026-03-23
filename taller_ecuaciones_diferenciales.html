@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller – Ecuaciones Diferenciales Exactas</title>
+
+  <!-- MathJax for equation rendering -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+
+  <style>
+    /* ──────────────────────────────────────────
+       GLOBAL
+    ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15px;
+      color: #111;
+      background: #f5f5f0;
+      padding: 40px 20px;
+    }
+
+    /* ──────────────────────────────────────────
+       PAGE WRAPPER (simulates Word document)
+    ────────────────────────────────────────── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      padding: 60px 72px;
+    }
+
+    /* ──────────────────────────────────────────
+       HEADER / COVER
+    ────────────────────────────────────────── */
+    .cover {
+      text-align: center;
+      border-bottom: 3px solid #1a3a6b;
+      padding-bottom: 28px;
+      margin-bottom: 40px;
+    }
+    .cover .institution { font-size: 0.9rem; letter-spacing: 1px; color: #555; text-transform: uppercase; }
+    .cover h1 { font-size: 1.6rem; color: #1a3a6b; margin: 12px 0 6px; }
+    .cover h2 { font-size: 1.15rem; color: #2e5090; margin-bottom: 10px; }
+    .cover .meta { font-size: 0.9rem; color: #444; line-height: 1.8; }
+
+    /* ──────────────────────────────────────────
+       SECTION & EXERCISE
+    ────────────────────────────────────────── */
+    .exercise {
+      margin-bottom: 52px;
+      padding-bottom: 36px;
+      border-bottom: 1px dashed #bbb;
+    }
+    .exercise:last-child { border-bottom: none; }
+
+    .exercise-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #1a3a6b;
+      background: #eef2fa;
+      border-left: 5px solid #2e5090;
+      padding: 8px 14px;
+      margin-bottom: 22px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      color: #2e5090;
+      margin: 18px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p { line-height: 1.75; margin-bottom: 10px; }
+
+    /* ──────────────────────────────────────────
+       STEP BLOCKS
+    ────────────────────────────────────────── */
+    .step {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 12px 0;
+    }
+    .step .step-label {
+      font-weight: bold;
+      color: #1a3a6b;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    /* ──────────────────────────────────────────
+       EQUATIONS
+    ────────────────────────────────────────── */
+    .eq-block {
+      display: block;
+      overflow-x: auto;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    /* ──────────────────────────────────────────
+       RESULT BOX  (red border per instructions)
+    ────────────────────────────────────────── */
+    .result-box {
+      border: 3px solid #cc0000;
+      border-radius: 6px;
+      padding: 16px 22px;
+      margin: 24px 0 8px;
+      background: #fff8f8;
+      text-align: center;
+    }
+    .result-box .result-label {
+      font-weight: bold;
+      color: #cc0000;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ──────────────────────────────────────────
+       TABLE (used for variable definitions)
+    ────────────────────────────────────────── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 7px 12px;
+      text-align: left;
+    }
+    th { background: #eef2fa; color: #1a3a6b; }
+
+    /* ──────────────────────────────────────────
+       MISC
+    ────────────────────────────────────────── */
+    .note {
+      font-size: 0.88rem;
+      color: #555;
+      font-style: italic;
+      margin-top: -4px;
+    }
+
+    @media print {
+      body { background: none; padding: 0; }
+      .page { box-shadow: none; border: none; padding: 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════════════ COVER ═══════════════════ -->
+  <div class="cover">
+    <div class="institution">Universidad — Facultad de Ingeniería</div>
+    <h1>Taller de Ecuaciones Diferenciales</h1>
+    <h2>Ecuaciones Diferenciales Exactas con Factor Integrante</h2>
+    <div class="meta">
+      Asignatura: Ecuaciones Diferenciales &nbsp;|&nbsp; Grupo: ___________<br/>
+      Integrantes: ___________________________ · ___________________________ · ___________________________<br/>
+      Fecha: ___________________________
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       EJERCICIO  a)   (x² + 4x) dx + x e^y dy = 0
+  ════════════════════════════════════════════════════════════ -->
+  <div class="exercise">
+    <div class="exercise-title">
+      Ejercicio a) &nbsp; \(\displaystyle (x^{2}+4x)\,dx + x\,e^{y}\,dy = 0\)
+    </div>
+
+    <!-- 1. Regla aplicada -->
+    <h3>1. Regla aplicada</h3>
+    <p>
+      Se aplica el método de <strong>ecuaciones diferenciales exactas con factor integrante</strong>.
+      Una ecuación de la forma \(M(x,y)\,dx + N(x,y)\,dy = 0\) es <em>exacta</em> si y solo si
+      \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
+      Cuando esta condición no se cumple, se busca un <strong>factor integrante</strong> \(\mu\) que, al
+      multiplicar la ecuación, la transforme en exacta.
+      Si \(\dfrac{\,\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}\,}{N} = f(x)\)
+      (función solo de \(x\)), entonces \(\mu(x)=e^{\int f(x)\,dx}\).
+    </p>
+
+    <!-- 2. Modelo matemático -->
+    <h3>2. Modelo matemático y definición de variables</h3>
+    <table>
+      <tr><th>Variable / Función</th><th>Descripción</th></tr>
+      <tr><td>\(M(x,y)\)</td><td>Coeficiente de \(dx\): \(M = x^{2}+4x\)</td></tr>
+      <tr><td>\(N(x,y)\)</td><td>Coeficiente de \(dy\): \(N = x\,e^{y}\)</td></tr>
+      <tr><td>\(\mu(x)\)</td><td>Factor integrante (función de \(x\) únicamente)</td></tr>
+      <tr><td>\(F(x,y)\)</td><td>Función potencial tal que \(\nabla F=(M,N)\)</td></tr>
+      <tr><td>\(C\)</td><td>Constante de integración</td></tr>
+    </table>
+    <p>El modelo general es:</p>
+    <span class="eq-block">$$M(x,y)\,dx + N(x,y)\,dy = 0 \quad\Longrightarrow\quad (x^{2}+4x)\,dx + x\,e^{y}\,dy = 0$$</span>
+
+    <!-- 3. Procedimiento -->
+    <h3>3. Procedimiento paso a paso</h3>
+
+    <div class="step">
+      <span class="step-label">Paso 1 – Verificar exactitud</span>
+      <p>Se calculan las derivadas parciales cruzadas:</p>
+      <span class="eq-block">
+        $$\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}(x^{2}+4x) = 0$$
+        $$\frac{\partial N}{\partial x} = \frac{\partial}{\partial x}(x\,e^{y}) = e^{y}$$
+      </span>
+      <p>Como \(0 \ne e^{y}\), la ecuación <strong>no es exacta</strong>.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 2 – Calcular el factor integrante \(\mu(x)\)</span>
+      <p>Se evalúa el cociente que debe depender únicamente de \(x\):</p>
+      <span class="eq-block">
+        $$\frac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+          = \frac{0 - e^{y}}{x\,e^{y}} = \frac{-1}{x} = f(x)$$
+      </span>
+      <p>Como \(f(x)=-\tfrac{1}{x}\) depende solo de \(x\), el factor integrante es:</p>
+      <span class="eq-block">
+        $$\mu(x) = e^{\int -\frac{1}{x}\,dx} = e^{-\ln|x|} = \frac{1}{x}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 3 – Multiplicar por \(\mu = \tfrac{1}{x}\)</span>
+      <span class="eq-block">
+        $$\frac{1}{x}(x^{2}+4x)\,dx + \frac{1}{x}\cdot x\,e^{y}\,dy = 0$$
+        $$(x+4)\,dx + e^{y}\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 4 – Verificar que la nueva ecuación sea exacta</span>
+      <p>Ahora \(\bar{M}=x+4\) y \(\bar{N}=e^{y}\):</p>
+      <span class="eq-block">
+        $$\frac{\partial \bar{M}}{\partial y}=0 \qquad \frac{\partial \bar{N}}{\partial x}=0 \qquad \checkmark$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 5 – Encontrar la función potencial \(F(x,y)\)</span>
+      <p>Se integra \(\bar{M}\) con respecto a \(x\):</p>
+      <span class="eq-block">
+        $$F = \int (x+4)\,dx + g(y) = \frac{x^{2}}{2}+4x+g(y)$$
+      </span>
+      <p>Se diferencia respecto a \(y\) y se iguala a \(\bar{N}\):</p>
+      <span class="eq-block">
+        $$\frac{\partial F}{\partial y} = g'(y) = e^{y} \;\Longrightarrow\; g(y)=e^{y}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 6 – Escribir la solución implícita</span>
+      <span class="eq-block">
+        $$F(x,y) = \frac{x^{2}}{2}+4x+e^{y} = C$$
+      </span>
+    </div>
+
+    <!-- Resultado final -->
+    <div class="result-box">
+      <span class="result-label">✦ Resultado Final — Ejercicio a)</span>
+      $$\boxed{\dfrac{x^{2}}{2}+4x+e^{y} = C}$$
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       EJERCICIO  b)   (x² + 8x) dx = − x e^y dy
+  ════════════════════════════════════════════════════════════ -->
+  <div class="exercise">
+    <div class="exercise-title">
+      Ejercicio b) &nbsp; \(\displaystyle (x^{2}+8x)\,dx = -\,x\,e^{y}\,dy\)
+    </div>
+
+    <!-- 1. Regla aplicada -->
+    <h3>1. Regla aplicada</h3>
+    <p>
+      Se aplica nuevamente el método de <strong>ecuaciones diferenciales exactas con factor integrante</strong>.
+      La ecuación se reescribe en la forma estándar \(M\,dx+N\,dy=0\) para verificar exactitud
+      y, de ser necesario, determinar \(\mu(x)\) mediante el criterio
+      \(\dfrac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = f(x)\).
+    </p>
+
+    <!-- 2. Modelo matemático -->
+    <h3>2. Modelo matemático y definición de variables</h3>
+    <p>Reescribiendo la ecuación en forma estándar:</p>
+    <span class="eq-block">
+      $$(x^{2}+8x)\,dx + x\,e^{y}\,dy = 0$$
+    </span>
+    <table>
+      <tr><th>Variable / Función</th><th>Descripción</th></tr>
+      <tr><td>\(M(x,y)\)</td><td>Coeficiente de \(dx\): \(M = x^{2}+8x\)</td></tr>
+      <tr><td>\(N(x,y)\)</td><td>Coeficiente de \(dy\): \(N = x\,e^{y}\)</td></tr>
+      <tr><td>\(\mu(x)\)</td><td>Factor integrante</td></tr>
+      <tr><td>\(F(x,y)\)</td><td>Función potencial</td></tr>
+      <tr><td>\(C\)</td><td>Constante de integración</td></tr>
+    </table>
+
+    <!-- 3. Procedimiento -->
+    <h3>3. Procedimiento paso a paso</h3>
+
+    <div class="step">
+      <span class="step-label">Paso 1 – Reescribir en forma estándar</span>
+      <span class="eq-block">
+        $$(x^{2}+8x)\,dx + x\,e^{y}\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 2 – Verificar exactitud</span>
+      <span class="eq-block">
+        $$\frac{\partial M}{\partial y} = 0 \qquad \frac{\partial N}{\partial x} = e^{y}$$
+      </span>
+      <p>Como \(0 \ne e^{y}\), la ecuación <strong>no es exacta</strong>.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 3 – Calcular el factor integrante</span>
+      <span class="eq-block">
+        $$f(x) = \dfrac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+                = \frac{0 - e^{y}}{x\,e^{y}} = -\frac{1}{x}$$
+        $$\mu(x) = e^{\int -\frac{1}{x}\,dx} = \frac{1}{x}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 4 – Multiplicar por \(\mu = \tfrac{1}{x}\)</span>
+      <span class="eq-block">
+        $$\frac{x^{2}+8x}{x}\,dx + \frac{x\,e^{y}}{x}\,dy = 0$$
+        $$(x+8)\,dx + e^{y}\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 5 – Verificar exactitud de la ecuación transformada</span>
+      <p>Con \(\bar{M}=x+8\) y \(\bar{N}=e^{y}\):</p>
+      <span class="eq-block">
+        $$\frac{\partial \bar{M}}{\partial y}=0 \qquad \frac{\partial \bar{N}}{\partial x}=0 \qquad \checkmark$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 6 – Encontrar \(F(x,y)\)</span>
+      <span class="eq-block">
+        $$F = \int (x+8)\,dx + g(y) = \frac{x^{2}}{2}+8x+g(y)$$
+        $$\frac{\partial F}{\partial y} = g'(y) = e^{y} \;\Longrightarrow\; g(y)=e^{y}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 7 – Solución implícita</span>
+      <span class="eq-block">
+        $$F(x,y)=\frac{x^{2}}{2}+8x+e^{y}=C$$
+      </span>
+    </div>
+
+    <div class="result-box">
+      <span class="result-label">✦ Resultado Final — Ejercicio b)</span>
+      $$\boxed{\dfrac{x^{2}}{2}+8x+e^{y} = C}$$
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       EJERCICIO  c)   (x + 4y²) dx + y x dy = 0
+  ════════════════════════════════════════════════════════════ -->
+  <div class="exercise">
+    <div class="exercise-title">
+      Ejercicio c) &nbsp; \(\displaystyle (x + 4y^{2})\,dx + yx\,dy = 0\)
+    </div>
+
+    <!-- 1. Regla aplicada -->
+    <h3>1. Regla aplicada</h3>
+    <p>
+      Se aplica el método de <strong>ecuaciones diferenciales exactas con factor integrante dependiente de \(x\)</strong>.
+      Dado que \(\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x} \ne 0\), la ecuación no es exacta.
+      Se evalúa el cociente
+      \(\dfrac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N}\);
+      si el resultado es una función solo de \(x\), el factor integrante es
+      \(\mu(x) = e^{\int f(x)\,dx}\).
+    </p>
+
+    <!-- 2. Modelo matemático -->
+    <h3>2. Modelo matemático y definición de variables</h3>
+    <table>
+      <tr><th>Variable / Función</th><th>Descripción</th></tr>
+      <tr><td>\(M(x,y)\)</td><td>Coeficiente de \(dx\): \(M = x+4y^{2}\)</td></tr>
+      <tr><td>\(N(x,y)\)</td><td>Coeficiente de \(dy\): \(N = yx\)</td></tr>
+      <tr><td>\(\mu(x)\)</td><td>Factor integrante (función de \(x\))</td></tr>
+      <tr><td>\(F(x,y)\)</td><td>Función potencial tal que \(F_x = \mu M,\; F_y=\mu N\)</td></tr>
+      <tr><td>\(C\)</td><td>Constante de integración</td></tr>
+    </table>
+
+    <!-- 3. Procedimiento -->
+    <h3>3. Procedimiento paso a paso</h3>
+
+    <div class="step">
+      <span class="step-label">Paso 1 – Verificar exactitud</span>
+      <span class="eq-block">
+        $$\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}(x+4y^{2}) = 8y$$
+        $$\frac{\partial N}{\partial x} = \frac{\partial}{\partial x}(yx) = y$$
+      </span>
+      <p>Como \(8y \ne y\), la ecuación <strong>no es exacta</strong>.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 2 – Calcular el factor integrante</span>
+      <span class="eq-block">
+        $$f(x) = \dfrac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+                = \frac{8y - y}{yx} = \frac{7y}{yx} = \frac{7}{x}$$
+        $$\mu(x) = e^{\int \frac{7}{x}\,dx} = e^{7\ln|x|} = x^{7}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 3 – Multiplicar la ecuación por \(\mu = x^{7}\)</span>
+      <span class="eq-block">
+        $$x^{7}(x+4y^{2})\,dx + x^{7}(yx)\,dy = 0$$
+        $$(x^{8}+4x^{7}y^{2})\,dx + x^{8}y\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 4 – Verificar exactitud de la ecuación transformada</span>
+      <p>Con \(\bar{M}=x^{8}+4x^{7}y^{2}\) y \(\bar{N}=x^{8}y\):</p>
+      <span class="eq-block">
+        $$\frac{\partial \bar{M}}{\partial y} = 8x^{7}y \qquad
+          \frac{\partial \bar{N}}{\partial x} = 8x^{7}y \qquad \checkmark$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 5 – Encontrar \(F(x,y)\)</span>
+      <p>Se integra \(\bar{M}\) respecto a \(x\):</p>
+      <span class="eq-block">
+        $$F = \int (x^{8}+4x^{7}y^{2})\,dx + g(y)
+            = \frac{x^{9}}{9} + 4\cdot\frac{x^{8}}{8}\,y^{2} + g(y)
+            = \frac{x^{9}}{9} + \frac{x^{8}y^{2}}{2} + g(y)$$
+      </span>
+      <p>Se diferencia respecto a \(y\) y se iguala a \(\bar{N}\):</p>
+      <span class="eq-block">
+        $$\frac{\partial F}{\partial y} = x^{8}y + g'(y) = x^{8}y
+          \;\Longrightarrow\; g'(y)=0 \;\Longrightarrow\; g(y)=\text{cte}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 6 – Solución implícita</span>
+      <span class="eq-block">
+        $$F(x,y)=\frac{x^{9}}{9}+\frac{x^{8}y^{2}}{2}=C$$
+      </span>
+    </div>
+
+    <div class="result-box">
+      <span class="result-label">✦ Resultado Final — Ejercicio c)</span>
+      $$\boxed{\dfrac{x^{9}}{9}+\dfrac{x^{8}y^{2}}{2} = C}$$
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       EJERCICIO  d)   y x dy = − (x + 6y²) dx
+  ════════════════════════════════════════════════════════════ -->
+  <div class="exercise">
+    <div class="exercise-title">
+      Ejercicio d) &nbsp; \(\displaystyle yx\,dy = -\bigl[(x+6y^{2})\,dx\bigr]\)
+    </div>
+
+    <!-- 1. Regla aplicada -->
+    <h3>1. Regla aplicada</h3>
+    <p>
+      Se aplica el método de <strong>ecuaciones diferenciales exactas con factor integrante dependiente de \(x\)</strong>.
+      La ecuación se reescribe en la forma estándar \(M\,dx+N\,dy=0\), se comprueba la condición
+      de exactitud y, al no cumplirse, se obtiene \(\mu(x)=e^{\int f(x)\,dx}\) donde
+      \(f(x) = \dfrac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N}\).
+    </p>
+
+    <!-- 2. Modelo matemático -->
+    <h3>2. Modelo matemático y definición de variables</h3>
+    <p>Reescribiendo en forma estándar:</p>
+    <span class="eq-block">
+      $$(x+6y^{2})\,dx + yx\,dy = 0$$
+    </span>
+    <table>
+      <tr><th>Variable / Función</th><th>Descripción</th></tr>
+      <tr><td>\(M(x,y)\)</td><td>Coeficiente de \(dx\): \(M = x+6y^{2}\)</td></tr>
+      <tr><td>\(N(x,y)\)</td><td>Coeficiente de \(dy\): \(N = yx\)</td></tr>
+      <tr><td>\(\mu(x)\)</td><td>Factor integrante (función de \(x\))</td></tr>
+      <tr><td>\(F(x,y)\)</td><td>Función potencial tal que \(F_x=\mu M,\; F_y=\mu N\)</td></tr>
+      <tr><td>\(C\)</td><td>Constante de integración</td></tr>
+    </table>
+
+    <!-- 3. Procedimiento -->
+    <h3>3. Procedimiento paso a paso</h3>
+
+    <div class="step">
+      <span class="step-label">Paso 1 – Reescribir en forma estándar</span>
+      <p>Se pasa todo al primer miembro:</p>
+      <span class="eq-block">
+        $$yx\,dy + (x+6y^{2})\,dx = 0 \;\Longrightarrow\; (x+6y^{2})\,dx + yx\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 2 – Verificar exactitud</span>
+      <span class="eq-block">
+        $$\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}(x+6y^{2}) = 12y$$
+        $$\frac{\partial N}{\partial x} = \frac{\partial}{\partial x}(yx) = y$$
+      </span>
+      <p>Como \(12y \ne y\), la ecuación <strong>no es exacta</strong>.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 3 – Calcular el factor integrante</span>
+      <span class="eq-block">
+        $$f(x) = \dfrac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N}
+                = \frac{12y - y}{yx} = \frac{11y}{yx} = \frac{11}{x}$$
+        $$\mu(x) = e^{\int \frac{11}{x}\,dx} = e^{11\ln|x|} = x^{11}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 4 – Multiplicar la ecuación por \(\mu = x^{11}\)</span>
+      <span class="eq-block">
+        $$x^{11}(x+6y^{2})\,dx + x^{11}(yx)\,dy = 0$$
+        $$(x^{12}+6x^{11}y^{2})\,dx + x^{12}y\,dy = 0$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 5 – Verificar exactitud de la ecuación transformada</span>
+      <p>Con \(\bar{M}=x^{12}+6x^{11}y^{2}\) y \(\bar{N}=x^{12}y\):</p>
+      <span class="eq-block">
+        $$\frac{\partial \bar{M}}{\partial y} = 12x^{11}y \qquad
+          \frac{\partial \bar{N}}{\partial x} = 12x^{11}y \qquad \checkmark$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 6 – Encontrar \(F(x,y)\)</span>
+      <p>Se integra \(\bar{M}\) respecto a \(x\):</p>
+      <span class="eq-block">
+        $$F = \int (x^{12}+6x^{11}y^{2})\,dx + g(y)
+            = \frac{x^{13}}{13} + 6\cdot\frac{x^{12}}{12}\,y^{2} + g(y)
+            = \frac{x^{13}}{13} + \frac{x^{12}y^{2}}{2} + g(y)$$
+      </span>
+      <p>Se diferencia respecto a \(y\) e iguala a \(\bar{N}\):</p>
+      <span class="eq-block">
+        $$\frac{\partial F}{\partial y} = x^{12}y + g'(y) = x^{12}y
+          \;\Longrightarrow\; g'(y)=0 \;\Longrightarrow\; g(y)=\text{cte}$$
+      </span>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Paso 7 – Solución implícita</span>
+      <span class="eq-block">
+        $$F(x,y)=\frac{x^{13}}{13}+\frac{x^{12}y^{2}}{2}=C$$
+      </span>
+    </div>
+
+    <div class="result-box">
+      <span class="result-label">✦ Resultado Final — Ejercicio d)</span>
+      $$\boxed{\dfrac{x^{13}}{13}+\dfrac{x^{12}y^{2}}{2} = C}$$
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <p style="text-align:center;font-size:0.8rem;color:#888;margin-top:32px;">
+    Taller elaborado conforme a los lineamientos institucionales — Todos los derechos reservados
+  </p>
+
+</div><!-- /.page -->
+</body>
+</html>
