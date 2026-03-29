@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" width="560" height="180" role="img" aria-label="Apex Global Cloud Logo">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B1E3D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D2B55;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1976D2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BCD4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90CAF9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="560" height="180" rx="14" fill="url(#bgGrad)"/>
+
+  <!-- Subtle border -->
+  <rect width="560" height="180" rx="14" fill="none" stroke="#1976D2" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- ===== ICON GROUP (left side) ===== -->
+  <g transform="translate(22, 18)">
+
+    <!-- Cloud shape -->
+    <path d="M 75 118 L 18 118 Q 0 118 0 98 Q 0 78 20 73
+             Q 16 44 42 37 Q 58 18 82 28
+             Q 95 10 115 14 Q 136 8 145 26
+             Q 162 22 168 42 Q 184 42 184 62
+             Q 184 84 160 90 L 130 95 L 75 118 Z"
+          fill="url(#cloudGrad)" opacity="0.92"/>
+
+    <!-- Database cylinder 1 -->
+    <ellipse cx="58"  cy="58"  rx="18" ry="6"  fill="url(#dbGrad)"/>
+    <rect    x="40"  y="58"  width="36" height="38" fill="url(#dbGrad)" opacity="0.95"/>
+    <ellipse cx="58"  cy="96"  rx="18" ry="6"  fill="#64B5F6"/>
+    <line x1="44" y1="70" x2="72" y2="70" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+    <line x1="44" y1="79" x2="72" y2="79" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+    <line x1="44" y1="88" x2="72" y2="88" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Database cylinder 2 -->
+    <ellipse cx="110" cy="58"  rx="18" ry="6"  fill="url(#dbGrad)"/>
+    <rect    x="92"  y="58"  width="36" height="38" fill="url(#dbGrad)" opacity="0.95"/>
+    <ellipse cx="110" cy="96"  rx="18" ry="6"  fill="#64B5F6"/>
+    <line x1="96" y1="70" x2="124" y2="70" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+    <line x1="96" y1="79" x2="124" y2="79" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+    <line x1="96" y1="88" x2="124" y2="88" stroke="#1565C0" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Network / telecom nodes above the cloud -->
+    <circle cx="30"  cy="32" r="5" fill="#00E5FF" opacity="0.9" filter="url(#glow)"/>
+    <circle cx="58"  cy="18" r="5" fill="#00E5FF" opacity="0.9" filter="url(#glow)"/>
+    <circle cx="92"  cy="12" r="5" fill="#00E5FF" opacity="0.9" filter="url(#glow)"/>
+    <circle cx="126" cy="17" r="5" fill="#00E5FF" opacity="0.9" filter="url(#glow)"/>
+    <circle cx="152" cy="30" r="5" fill="#00E5FF" opacity="0.9" filter="url(#glow)"/>
+
+    <line x1="30"  y1="32" x2="58"  y2="18" stroke="#00E5FF" stroke-width="1.2" opacity="0.55"/>
+    <line x1="58"  y1="18" x2="92"  y2="12" stroke="#00E5FF" stroke-width="1.2" opacity="0.55"/>
+    <line x1="92"  y1="12" x2="126" y2="17" stroke="#00E5FF" stroke-width="1.2" opacity="0.55"/>
+    <line x1="126" y1="17" x2="152" y2="30" stroke="#00E5FF" stroke-width="1.2" opacity="0.55"/>
+  </g>
+
+  <!-- ===== TEXT GROUP (right side) ===== -->
+
+  <!-- "APEX" in bold white -->
+  <text x="228" y="72"
+        font-family="'Arial Black', 'Arial', sans-serif"
+        font-size="40"
+        font-weight="900"
+        fill="#FFFFFF"
+        letter-spacing="3">APEX</text>
+
+  <!-- Accent line under APEX -->
+  <rect x="228" y="80" width="290" height="2" rx="1" fill="url(#cloudGrad)" opacity="0.8"/>
+
+  <!-- "GLOBAL CLOUD" in cyan-blue -->
+  <text x="228" y="110"
+        font-family="'Arial', sans-serif"
+        font-size="22"
+        font-weight="700"
+        fill="#29B6F6"
+        letter-spacing="6">GLOBAL CLOUD</text>
+
+  <!-- Tagline line 1 -->
+  <text x="229" y="134"
+        font-family="'Arial', sans-serif"
+        font-size="10.5"
+        fill="#90CAF9"
+        letter-spacing="1.5">ALMACENAMIENTO &amp; BASE DE DATOS EMPRESARIAL</text>
+
+  <!-- Tagline line 2 -->
+  <text x="229" y="151"
+        font-family="'Arial', sans-serif"
+        font-size="10"
+        fill="#546E7A"
+        letter-spacing="1">SOLUCIONES EN TELECOMUNICACIONES</text>
+</svg>
