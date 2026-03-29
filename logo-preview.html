@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Global Cloud – Logotipo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      color: #0B1E3D;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Logo showcases ────────────────────────────── */
+    .showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 32px;
+    }
+
+    .card.dark  { background: #0B1E3D; }
+    .card.light { background: #ffffff; }
+    .card.grey  { background: #eceff1; }
+
+    .card label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .card.dark  label { color: #546E7A; }
+    .card.light label { color: #90A4AE; }
+    .card.grey  label { color: #90A4AE; }
+
+    .card img, .card svg, .card object {
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Colour palette ────────────────────────────── */
+    .palette {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch-block {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .swatch span {
+      font-size: 0.72rem;
+      color: #455A64;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Description ───────────────────────────────── */
+    .description {
+      max-width: 600px;
+      text-align: center;
+      color: #37474F;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Logotipo – Apex Global Cloud</h1>
+
+  <!-- ── Showcase on dark background (primary) ── -->
+  <div class="showcase">
+    <div class="card dark">
+      <label>Fondo oscuro (primario)</label>
+      <img src="apex-global-cloud-logo.svg" alt="Apex Global Cloud logo – fondo oscuro" />
+    </div>
+
+    <div class="card light">
+      <label>Fondo blanco</label>
+      <img src="apex-global-cloud-logo.svg" alt="Apex Global Cloud logo – fondo blanco" />
+    </div>
+
+    <div class="card grey">
+      <label>Fondo gris claro</label>
+      <img src="apex-global-cloud-logo.svg" alt="Apex Global Cloud logo – fondo gris" />
+    </div>
+  </div>
+
+  <!-- ── Colour palette ── -->
+  <h1>Paleta de colores</h1>
+  <div class="palette">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#0B1E3D;"></div>
+      <span>#0B1E3D</span>
+      <span>Navy</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#1976D2;"></div>
+      <span>#1976D2</span>
+      <span>Azul primario</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#00BCD4;"></div>
+      <span>#00BCD4</span>
+      <span>Cian</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#00E5FF;"></div>
+      <span>#00E5FF</span>
+      <span>Cian acento</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#29B6F6;"></div>
+      <span>#29B6F6</span>
+      <span>Azul claro</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#FFFFFF; border:1px solid #cfd8dc;"></div>
+      <span>#FFFFFF</span>
+      <span>Blanco</span>
+    </div>
+  </div>
+
+  <!-- ── Brand description ── -->
+  <p class="description">
+    <strong>Apex Global Cloud</strong> brinda servicios de almacenamiento y base de datos
+    de información para empresas contratistas en el sector de las telecomunicaciones.
+    El logotipo integra una nube tecnológica con cilindros de base de datos y una red
+    de nodos interconectados, simbolizando conectividad, seguridad y gestión de datos
+    a escala global.
+  </p>
+
+</body>
+</html>
