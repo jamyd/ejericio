@@ -1,0 +1,473 @@
+================================================================
+   TALLER DE ECUACIONES DIFERENCIALES EXACTAS
+            Y DE FACTOR INTEGRANTE
+                SEGUNDO CORTE
+================================================================
+
+----------------------------------------------------------------
+INSTRUCCIONES GENERALES
+----------------------------------------------------------------
+Para cada ejercicio se:
+ a) Explica la regla aplicada, indicando claramente cuál se
+    utilizó y justificando su uso.
+ b) Define el modelo matemático con cada una de sus variables.
+ c) Desarrolla el procedimiento paso a paso, incluyendo la
+    explicación escrita correspondiente en cada etapa.
+ d) Presenta el resultado final dentro de un recuadro especial.
+
+================================================================
+TEORÍA BASE
+================================================================
+
+ECUACIÓN DIFERENCIAL EXACTA
+----------------------------
+Una ecuación M(x,y) dx + N(x,y) dy = 0 es EXACTA si y solo si:
+
+        ∂M/∂y = ∂N/∂x
+
+En ese caso existe F(x,y) tal que:
+  dF = M dx + N dy  →  F(x,y) = C  (solución implícita)
+
+Para encontrar F(x,y):
+  1. Integrar M respecto a x:  F = ∫ M dx + g(y)
+  2. Derivar F respecto a y e igualar a N para hallar g'(y)
+  3. Integrar g'(y) para obtener g(y)
+
+FACTOR INTEGRANTE μ(x)
+------------------------
+Si la ecuación NO es exacta, se busca un factor integrante μ
+que depende sólo de x, usando la fórmula:
+
+        f(x) = ( ∂M/∂y − ∂N/∂x ) / N
+
+Si f(x) depende SÓLO de x, entonces:
+
+        μ(x) = e^( ∫ f(x) dx )
+
+Al multiplicar la ecuación original por μ(x), la nueva
+ecuación M₁ dx + N₁ dy = 0 SÍ es exacta y se resuelve
+con el método de ecuaciones exactas.
+
+================================================================
+EJERCICIO a)
+================================================================
+
+Ecuación original:
+        (x + 4x) dx + x·e^y dy = 0
+
+Simplificando:
+        5x dx + x·e^y dy = 0
+
+----------------------------------------------------------------
+a) REGLA APLICADA: Factor Integrante μ(x)
+----------------------------------------------------------------
+Se aplica el método del factor integrante dependiente de x
+porque, al verificar la condición de exactitud, se comprueba
+que ∂M/∂y ≠ ∂N/∂x, y la expresión auxiliar f(x) resulta ser
+función exclusivamente de la variable x, lo que garantiza la
+existencia de μ(x).
+
+----------------------------------------------------------------
+b) MODELO MATEMÁTICO
+----------------------------------------------------------------
+La ecuación está escrita en la forma estándar:
+
+        M(x, y) dx + N(x, y) dy = 0
+
+donde:
+
+   M(x, y) = 5x         →  función de x e y en el término dx
+   N(x, y) = x·e^y      →  función de x e y en el término dy
+
+----------------------------------------------------------------
+c) PROCEDIMIENTO PASO A PASO
+----------------------------------------------------------------
+
+PASO 1 — Verificar si la ecuación es exacta
+
+   ∂M/∂y = ∂(5x)/∂y = 0
+
+   ∂N/∂x = ∂(x·e^y)/∂x = e^y
+
+   Como  ∂M/∂y ≠ ∂N/∂x  (0 ≠ e^y),
+   la ecuación NO ES EXACTA en su forma original.
+
+
+PASO 2 — Calcular la función auxiliar f(x)
+
+        ∂M/∂y − ∂N/∂x     0 − e^y       −e^y      −1
+   f(x) = ——————————————— = ————————— = ————————— = ———
+                N            x·e^y        x·e^y      x
+
+   El resultado f(x) = −1/x depende ÚNICAMENTE de x ✓
+   Por lo tanto existe un factor integrante μ(x).
+
+
+PASO 3 — Calcular el factor integrante μ(x)
+
+   μ(x) = e^( ∫ f(x) dx )
+        = e^( ∫ −1/x dx )
+        = e^( −ln|x| )
+        = e^( ln|x|^(−1) )
+        = 1/x
+
+
+PASO 4 — Multiplicar la ecuación original por μ = 1/x
+
+   (1/x) · [5x dx + x·e^y dy = 0]
+
+        5 dx + e^y dy = 0
+
+
+PASO 5 — Verificar exactitud de la nueva ecuación
+
+   M₁ = 5      →   ∂M₁/∂y = 0
+   N₁ = e^y    →   ∂N₁/∂x = 0
+
+   Como  ∂M₁/∂y = ∂N₁/∂x = 0,  la nueva ecuación ES EXACTA ✓
+
+
+PASO 6 — Encontrar F(x, y) tal que ∂F/∂x = M₁
+
+   F = ∫ M₁ dx = ∫ 5 dx = 5x + g(y)
+
+
+PASO 7 — Hallar g(y) usando ∂F/∂y = N₁
+
+   ∂F/∂y = g'(y) = e^y
+
+   g(y) = ∫ e^y dy = e^y + C₁
+
+
+PASO 8 — Escribir la solución general
+
+   F(x, y) = 5x + e^y = C
+
+----------------------------------------------------------------
+d) RESULTADO FINAL
+----------------------------------------------------------------
+
+        ┌─────────────────────────────┐
+        │                             │
+        │      5x + e^y  =  C         │
+        │                             │
+        └─────────────────────────────┘
+
+
+================================================================
+EJERCICIO b)
+================================================================
+
+Ecuación original:
+        (x + 8x) dx = −(x·e^y dy)
+
+Reescribiendo en forma estándar:
+        9x dx + x·e^y dy = 0
+
+----------------------------------------------------------------
+a) REGLA APLICADA: Factor Integrante μ(x)
+----------------------------------------------------------------
+Al igual que en el ejercicio anterior, la ecuación no satisface
+la condición de exactitud. La expresión auxiliar f(x) = −1/x
+depende exclusivamente de x, por lo que se aplica el mismo
+procedimiento de factor integrante μ(x) = e^(∫ f(x) dx).
+
+----------------------------------------------------------------
+b) MODELO MATEMÁTICO
+----------------------------------------------------------------
+   M(x, y) = 9x         →  coeficiente del diferencial dx
+   N(x, y) = x·e^y      →  coeficiente del diferencial dy
+
+----------------------------------------------------------------
+c) PROCEDIMIENTO PASO A PASO
+----------------------------------------------------------------
+
+PASO 1 — Verificar exactitud
+
+   ∂M/∂y = ∂(9x)/∂y = 0
+
+   ∂N/∂x = ∂(x·e^y)/∂x = e^y
+
+   Como 0 ≠ e^y, la ecuación NO ES EXACTA.
+
+
+PASO 2 — Función auxiliar f(x)
+
+         0 − e^y       −1
+   f(x) = ————————— = ———
+           x·e^y         x
+
+   Depende sólo de x ✓
+
+
+PASO 3 — Factor integrante
+
+   μ(x) = e^( ∫ −1/x dx ) = e^( −ln|x| ) = 1/x
+
+
+PASO 4 — Multiplicar por μ = 1/x
+
+   9 dx + e^y dy = 0
+
+
+PASO 5 — Verificar exactitud
+
+   ∂(9)/∂y = 0   =   ∂(e^y)/∂x = 0   ✓  Exacta
+
+
+PASO 6 — Integrar M₁ respecto a x
+
+   F = ∫ 9 dx = 9x + g(y)
+
+
+PASO 7 — Hallar g(y)
+
+   ∂F/∂y = g'(y) = e^y   →   g(y) = e^y
+
+
+PASO 8 — Solución general
+
+   F(x, y) = 9x + e^y = C
+
+----------------------------------------------------------------
+d) RESULTADO FINAL
+----------------------------------------------------------------
+
+        ┌─────────────────────────────┐
+        │                             │
+        │      9x + e^y  =  C         │
+        │                             │
+        └─────────────────────────────┘
+
+
+================================================================
+EJERCICIO c)
+================================================================
+
+Ecuación:
+        (x + 4y²) dx + yx dy = 0
+
+----------------------------------------------------------------
+a) REGLA APLICADA: Factor Integrante μ(x)
+----------------------------------------------------------------
+La condición de exactitud no se cumple (∂M/∂y = 8y ≠ y = ∂N/∂x).
+Se calcula la expresión auxiliar:
+
+        (∂M/∂y − ∂N/∂x) / N = (8y − y) / (xy) = 7/x
+
+Como el resultado depende únicamente de x, se puede encontrar
+un factor integrante μ(x) = e^(∫ 7/x dx) = x^7.
+
+----------------------------------------------------------------
+b) MODELO MATEMÁTICO
+----------------------------------------------------------------
+   M(x, y) = x + 4y²    →  coeficiente del diferencial dx
+   N(x, y) = xy          →  coeficiente del diferencial dy
+
+   y: variable dependiente (función de x)
+   x: variable independiente
+
+----------------------------------------------------------------
+c) PROCEDIMIENTO PASO A PASO
+----------------------------------------------------------------
+
+PASO 1 — Verificar exactitud
+
+   ∂M/∂y = ∂(x + 4y²)/∂y = 8y
+
+   ∂N/∂x = ∂(xy)/∂x = y
+
+   Como 8y ≠ y, la ecuación NO ES EXACTA.
+
+
+PASO 2 — Función auxiliar f(x)
+
+         ∂M/∂y − ∂N/∂x     8y − y      7y       7
+   f(x) = ——————————————— = ———————— = ———— = ———
+                N              xy        xy      x
+
+   Depende sólo de x ✓
+
+
+PASO 3 — Factor integrante
+
+   μ(x) = e^( ∫ 7/x dx )
+        = e^( 7·ln|x| )
+        = e^( ln|x^7| )
+        = x^7
+
+
+PASO 4 — Multiplicar la ecuación por μ = x^7
+
+   x^7·[(x + 4y²) dx + xy dy = 0]
+
+   (x^8 + 4x^7·y²) dx + x^8·y dy = 0
+
+
+PASO 5 — Verificar exactitud de la nueva ecuación
+
+   M₁ = x^8 + 4x^7·y²   →   ∂M₁/∂y = 8x^7·y
+   N₁ = x^8·y            →   ∂N₁/∂x = 8x^7·y
+
+   Como ∂M₁/∂y = ∂N₁/∂x = 8x^7·y, la ecuación ES EXACTA ✓
+
+
+PASO 6 — Integrar M₁ respecto a x
+
+   F = ∫ (x^8 + 4x^7·y²) dx
+
+     = x^9/9 + 4·(x^8/8)·y² + g(y)
+
+     = x^9/9 + (x^8·y²)/2 + g(y)
+
+
+PASO 7 — Hallar g(y) usando ∂F/∂y = N₁
+
+   ∂F/∂y = x^8·y + g'(y) = x^8·y
+
+   g'(y) = 0   →   g(y) = C₁   (constante)
+
+
+PASO 8 — Solución general
+
+   F(x, y) = x^9/9 + x^8·y²/2 = C
+
+   Multiplicando por 18:   2x^9 + 9x^8·y² = K
+
+----------------------------------------------------------------
+d) RESULTADO FINAL
+----------------------------------------------------------------
+
+        ┌──────────────────────────────────────────────┐
+        │                                              │
+        │   x^9/9  +  x^8·y²/2  =  C                  │
+        │                                              │
+        │   (equivalente: 2x^9 + 9x^8·y² = K)         │
+        │                                              │
+        └──────────────────────────────────────────────┘
+
+
+================================================================
+EJERCICIO d)
+================================================================
+
+Ecuación original:
+        yx dy = −((x + 6y²) dx)
+
+Reescribiendo en forma estándar (pasando todo al mismo lado):
+        (x + 6y²) dx + xy dy = 0
+
+----------------------------------------------------------------
+a) REGLA APLICADA: Factor Integrante μ(x)
+----------------------------------------------------------------
+Al reescribir la ecuación en forma estándar se verifican las
+derivadas parciales:  ∂M/∂y = 12y  y  ∂N/∂x = y.
+Como no son iguales, la ecuación no es exacta. La expresión:
+
+        (∂M/∂y − ∂N/∂x) / N = (12y − y)/(xy) = 11/x
+
+depende sólo de x, por lo que se aplica el factor integrante
+μ(x) = e^(∫ 11/x dx) = x^11, el cual convierte la ecuación
+en una exacta resoluble de forma directa.
+
+----------------------------------------------------------------
+b) MODELO MATEMÁTICO
+----------------------------------------------------------------
+   M(x, y) = x + 6y²    →  coeficiente del diferencial dx
+   N(x, y) = xy          →  coeficiente del diferencial dy
+
+   La ecuación describe familias de curvas en el plano (x, y).
+
+----------------------------------------------------------------
+c) PROCEDIMIENTO PASO A PASO
+----------------------------------------------------------------
+
+PASO 1 — Verificar exactitud
+
+   ∂M/∂y = ∂(x + 6y²)/∂y = 12y
+
+   ∂N/∂x = ∂(xy)/∂x = y
+
+   Como 12y ≠ y, la ecuación NO ES EXACTA.
+
+
+PASO 2 — Función auxiliar f(x)
+
+         ∂M/∂y − ∂N/∂x     12y − y      11y       11
+   f(x) = ——————————————— = ————————— = ———— = ————
+                N               xy        xy       x
+
+   Depende sólo de x ✓
+
+
+PASO 3 — Factor integrante
+
+   μ(x) = e^( ∫ 11/x dx )
+        = e^( 11·ln|x| )
+        = e^( ln|x^11| )
+        = x^11
+
+
+PASO 4 — Multiplicar la ecuación por μ = x^11
+
+   x^11·[(x + 6y²) dx + xy dy = 0]
+
+   (x^12 + 6x^11·y²) dx + x^12·y dy = 0
+
+
+PASO 5 — Verificar exactitud de la nueva ecuación
+
+   M₁ = x^12 + 6x^11·y²   →   ∂M₁/∂y = 12x^11·y
+   N₁ = x^12·y             →   ∂N₁/∂x = 12x^11·y
+
+   Como ∂M₁/∂y = ∂N₁/∂x = 12x^11·y, la ecuación ES EXACTA ✓
+
+
+PASO 6 — Integrar M₁ respecto a x
+
+   F = ∫ (x^12 + 6x^11·y²) dx
+
+     = x^13/13 + 6·(x^12/12)·y² + g(y)
+
+     = x^13/13 + (x^12·y²)/2 + g(y)
+
+
+PASO 7 — Hallar g(y) usando ∂F/∂y = N₁
+
+   ∂F/∂y = x^12·y + g'(y) = x^12·y
+
+   g'(y) = 0   →   g(y) = C₁   (constante)
+
+
+PASO 8 — Solución general
+
+   F(x, y) = x^13/13 + x^12·y²/2 = C
+
+   Multiplicando por 26:   2x^13 + 13x^12·y² = K
+
+----------------------------------------------------------------
+d) RESULTADO FINAL
+----------------------------------------------------------------
+
+        ┌──────────────────────────────────────────────┐
+        │                                              │
+        │   x^13/13  +  x^12·y²/2  =  C               │
+        │                                              │
+        │   (equivalente: 2x^13 + 13x^12·y² = K)      │
+        │                                              │
+        └──────────────────────────────────────────────┘
+
+
+================================================================
+RESUMEN DE SOLUCIONES
+================================================================
+
+  a) 5x dx + xe^y dy = 0        →   5x + e^y = C
+
+  b) 9x dx + xe^y dy = 0        →   9x + e^y = C
+
+  c) (x+4y²)dx + yx dy = 0     →   x^9/9 + x^8·y²/2 = C
+
+  d) (x+6y²)dx + xy dy = 0     →   x^13/13 + x^12·y²/2 = C
+
+================================================================
